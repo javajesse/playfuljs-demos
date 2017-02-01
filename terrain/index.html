@@ -8,6 +8,10 @@
 
     <script>
 
+      var WATER_LEVEL = 0.4;
+      var WATER_OPACITY = 0.60;
+      var WATER_COLOR = '0, 110, 180';
+    
       function Terrain(detail) {
         this.size = Math.pow(2, detail) + 1;
         this.max = this.size - 1;
@@ -80,7 +84,7 @@
 
       Terrain.prototype.draw = function(ctx, width, height) {
         var self = this;
-        var waterVal = this.size * 0.3;
+        var waterVal = this.size * WATER_LEVEL;
 
         for (var y = 0; y < this.size; y++) {
           for (var x = 0; x < this.size; x++) {
@@ -91,7 +95,7 @@
             var style = brightness(x, y, this.get(x + 1, y) - val);
 
             rect(top, bottom, style);
-            rect(water, bottom, 'rgba(50, 150, 200, 0.15)');
+            rect(water, bottom, 'rgba('+WATER_COLOR+', '+WATER_OPACITY+')');
           }
         }
 
